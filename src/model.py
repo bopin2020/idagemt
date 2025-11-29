@@ -1,4 +1,4 @@
-from enum import IntEnum
+from context import *
 
 class FuncType(IntEnum):
     ImportFunc = 0x0000,

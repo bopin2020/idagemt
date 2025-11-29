@@ -4,9 +4,9 @@ Function analysis example for IDA Domain API.
 
 This example demonstrates how to find and analyze functions in an IDA database.
 """
-
 import argparse
 from algorithms import *
+from protocols import *
 
 def main():
     """Main entry point with argument parsing."""
@@ -33,14 +33,10 @@ def main():
         action='store_true',
         help='Analyze local variables in functions',
     )
-    args = parser.parse_args()
-    ctx = Context()
-    cp = FuncCodePathAlgo()
-    cp.run(ctx)
-    cp.get_results()
-
-    #analyze_functions(args.input_file, args.pattern, args.max_results, args.analyze_locals)
-
+    with Context(parser.parse_args()) as ctx:
+        cp = FuncCodePathAlgo()
+        cp.run(ctx)
+        cp.get_results()
 
 if __name__ == '__main__':
     main()
